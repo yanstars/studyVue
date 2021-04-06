@@ -4059,6 +4059,7 @@
         measure(("vue " + name + " patch"), startTag, endTag);
       };
     } else {
+
       updateComponent = function () {
         // debugger
         vm._update(vm._render(), hydrating);
@@ -9068,6 +9069,7 @@
   Vue.prototype.__patch__ = inBrowser ? patch : noop;
 
   // public mount method
+  //   
   Vue.prototype.$mount = function (
     el,
     hydrating
@@ -11869,21 +11871,26 @@
   // `createCompilerCreator` allows creating compilers that use alternative
   // parser/optimizer/codegen, e.g the SSR optimizing compiler.
   // Here we just export a default compiler using the default parts.
-  var createCompiler = createCompilerCreator(function baseCompile (
+
+  function baseCompile (
     template,
     options
   ) {
     var ast = parse(template.trim(), options);
+    debugger
     if (options.optimize !== false) {
       optimize(ast, options);
     }
     var code = generate(ast, options);
     return {
+      
       ast: ast,
       render: code.render,
       staticRenderFns: code.staticRenderFns
     }
-  });
+  }
+
+  var createCompiler = createCompilerCreator(baseCompile);
 
   /*  */
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="" id="app"></div>
+    <div class="" id="ccc"></div>
+    <script>
+      const { render } = Vue.compile(' <div> <h1 v-for="item in 4" > ${name} ${item}  </h1> </div>', {
+        delimiters: ['${', '}'],
+      })
+
+
+      let vm = new Vue({
+        el: '#ccc',
+        data() {
+          return {
+            name: '张三',
+          }
+        },
+      })
+
+      vm._render = render
+      vm.$mount()
+
+      // new Vue({
+      //   template: `
+      //   <div>
+      //     <h1> this is title </h1>
+      //     <p v-for="item in list "  v-if="item > 2"  :key="item"> {{ item }}</p>
+      //   </div>`,
+      //   methods: {},
+
+      //   data() {
+      //     return {
+      //       list: [1, 2, 3, 4, 5],
+      //     }
+      //   },
+      // }).$mount('#app')
+    </script>
+  </body>
+</html>
